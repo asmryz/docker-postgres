@@ -7,15 +7,15 @@ create table classroom
 	);
 
 create table department
-	(dept_name		varchar(20), 
-	 building		varchar(15), 
+	(dept_name		varchar(20),
+	 building		varchar(15),
 	 budget		        numeric(12,2) check (budget > 0),
 	 primary key (dept_name)
 	);
 
 create table course
-	(course_id		varchar(8), 
-	 title			varchar(50), 
+	(course_id		varchar(8),
+	 title			varchar(50),
 	 dept_name		varchar(20),
 	 credits		numeric(2,0) check (credits > 0),
 	 primary key (course_id),
@@ -24,9 +24,9 @@ create table course
 	);
 
 create table instructor
-	(ID			varchar(5), 
+	(ID			varchar(5),
 	 name			varchar(20) not null, 
-	 dept_name		varchar(20), 
+	 dept_name		varchar(20),
 	 salary			numeric(8,2) check (salary > 29000),
 	 primary key (ID),
 	 foreign key (dept_name) references department (dept_name)
@@ -34,11 +34,11 @@ create table instructor
 	);
 
 create table section
-	(course_id		varchar(8), 
+	(course_id		varchar(8),
          sec_id			varchar(8),
 	 semester		varchar(6)
-		check (semester in ('Fall', 'Winter', 'Spring', 'Summer')), 
-	 year			numeric(4,0) check (year > 1701 and year < 2100), 
+		check (semester in ('Fall', 'Winter', 'Spring', 'Summer')),
+	 year			numeric(4,0) check (year > 1701 and year < 2100),
 	 building		varchar(15),
 	 room_number		varchar(7),
 	 time_slot_id		varchar(4),
@@ -50,9 +50,9 @@ create table section
 	);
 
 create table teaches
-	(ID			varchar(5), 
+	(ID			varchar(5),
 	 course_id		varchar(8),
-	 sec_id			varchar(8), 
+	 sec_id			varchar(8),
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 primary key (ID, course_id, sec_id, semester, year),
@@ -63,9 +63,9 @@ create table teaches
 	);
 
 create table student
-	(ID			varchar(5), 
+	(ID			varchar(5),
 	 name			varchar(20) not null, 
-	 dept_name		varchar(20), 
+	 dept_name		varchar(20),
 	 tot_cred		numeric(3,0) check (tot_cred >= 0),
 	 primary key (ID),
 	 foreign key (dept_name) references department (dept_name)
@@ -73,9 +73,9 @@ create table student
 	);
 
 create table takes
-	(ID			varchar(5), 
+	(ID			varchar(5),
 	 course_id		varchar(8),
-	 sec_id			varchar(8), 
+	 sec_id			varchar(8),
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 grade		        varchar(2),
@@ -107,7 +107,7 @@ create table time_slot
 	);
 
 create table prereq
-	(course_id		varchar(8), 
+	(course_id		varchar(8),
 	 prereq_id		varchar(8),
 	 primary key (course_id, prereq_id),
 	 foreign key (course_id) references course (course_id)
