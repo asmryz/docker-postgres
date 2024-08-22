@@ -1,6 +1,3 @@
-CREATE USER demo WITH ENCRYPTED PASSWORD 'demo@428';
-CREATE DATABASE demo OWNER demo;
-\c demo
 
 create table classroom
 	(building		varchar(15),
